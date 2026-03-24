@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <!-- 모바일 화면에서도 잘 보이도록 설정합니다 -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hello World - Python Flask</title>
+
+    <!-- 스타일은 별도 CSS 파일 대신 여기에 직접 작성했습니다 (간단한 예제이므로) -->
+    <style>
+        /* 페이지 전체 배경과 폰트 설정 */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f4f8;
+            display: flex;
+            justify-content: center;  /* 가로 중앙 정렬 */
+            align-items: center;      /* 세로 중앙 정렬 */
+            height: 100vh;            /* 화면 전체 높이 사용 */
+            margin: 0;
+        }
+
+        /* 카드 형태의 컨테이너 */
+        .card {
+            background-color: white;
+            padding: 60px 80px;
+            border-radius: 16px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+
+        /* Python 로고 이모지 */
+        .logo {
+            font-size: 64px;
+            margin-bottom: 16px;
+        }
+
+        /* 메인 제목 */
+        h1 {
+            color: #306998;  /* Python 공식 파란색 */
+            font-size: 2.5rem;
+            margin: 0 0 12px 0;
+        }
+
+        /* 부제목 */
+        p {
+            color: #555;
+            font-size: 1.1rem;
+            margin: 0 0 24px 0;
+        }
+
+        /* About 페이지로 가는 링크 버튼 */
+        a.btn {
+            display: inline-block;
+            background-color: #306998;
+            color: white;
+            text-decoration: none;
+            padding: 12px 28px;
+            border-radius: 8px;
+            font-size: 1rem;
+            transition: background-color 0.2s;
+        }
+
+        a.btn:hover {
+            background-color: #FFD43B;  /* Python 공식 노란색 */
+            color: #306998;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="card">
+        <!-- Python 로고 -->
+        <div class="logo">🐍</div>
+
+        <!-- 메인 메시지 -->
+        <h1>Hello, World!</h1>
+
+        <!-- 설명 텍스트 -->
+        <p>Python + Flask 로 만든 첫 번째 웹 페이지입니다.<br>
+           Tomcat 없이 Python 만으로 웹 서버가 동작하고 있어요!</p>
+
+        <!-- /about 경로로 이동하는 링크 -->
+        <a href="/about" class="btn">About 페이지 보기 →</a>
+    </div>
+
+</body>
+</html>
