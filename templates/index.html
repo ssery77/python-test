@@ -124,14 +124,21 @@
         {% endif %}
 
         {% if session.get('user_id') %}
-        <a href="/logout" class="btn" style="background-color: #c62828;">로그아웃</a>
+        <a href="{{ url_for('logout') }}" class="btn" style="background-color: #c62828;">로그아웃</a>
         {% else %}
-        <a href="/login" class="btn">로그인 하러 가기 →</a>
+        <a href="{{ url_for('login') }}" class="btn">로그인 하러 가기 →</a>
         {% endif %}
 
         <div style="margin-top: 20px;">
-            <a href="/about" style="color: #306998; text-decoration: none; font-size: 0.9rem;">About 페이지 보기 →</a>
+            <a href="{{ url_for('test_page') }}" style="color: #306998; text-decoration: none; font-size: 0.9rem;">test
+                페이지 보기 →</a>
         </div>
+
+        <div style="margin-top: 20px;">
+            <a href="{{ url_for('about') }}" style="color: #306998; text-decoration: none; font-size: 0.9rem;">About 페이지
+                보기 →</a>
+        </div>
+
     </div>
 
 </body>

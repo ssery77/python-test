@@ -96,6 +96,14 @@ def logout():
     return redirect(url_for("hello_world"))
 
 
+@app.route("/test")
+def test_page():
+    """
+    /test 경로로 접속했을 때 실행되는 함수입니다.
+    """
+    return render_template("test.html")
+
+
 # 이 파일을 직접 실행했을 때만 서버를 시작합니다.
 # (다른 파일에서 import 로 불렀을 때는 서버가 자동 시작되지 않습니다)
 # [비교] Tomcat 을 startup.sh 로 시작하는 것과 같습니다.
