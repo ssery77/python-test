@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="ko">
+
 <head>
     <meta charset="UTF-8">
     <!-- 모바일 화면에서도 잘 보이도록 설정합니다 -->
@@ -13,9 +14,12 @@
             font-family: Arial, sans-serif;
             background-color: #f0f4f8;
             display: flex;
-            justify-content: center;  /* 가로 중앙 정렬 */
-            align-items: center;      /* 세로 중앙 정렬 */
-            height: 100vh;            /* 화면 전체 높이 사용 */
+            justify-content: center;
+            /* 가로 중앙 정렬 */
+            align-items: center;
+            /* 세로 중앙 정렬 */
+            height: 100vh;
+            /* 화면 전체 높이 사용 */
             margin: 0;
         }
 
@@ -36,7 +40,8 @@
 
         /* 메인 제목 */
         h1 {
-            color: #306998;  /* Python 공식 파란색 */
+            color: #306998;
+            /* Python 공식 파란색 */
             font-size: 2.5rem;
             margin: 0 0 12px 0;
         }
@@ -61,27 +66,74 @@
         }
 
         a.btn:hover {
-            background-color: #FFD43B;  /* Python 공식 노란색 */
+            background-color: #FFD43B;
+            /* Python 공식 노란색 */
             color: #306998;
+        }
+
+        /* 알림 메시지 스타일 */
+        .flash-message {
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            text-align: left;
+        }
+
+        .flash-success {
+            background-color: #e8f5e9;
+            color: #2e7d32;
+        }
+
+        .flash-error {
+            background-color: #ffebee;
+            color: #c62828;
+        }
+
+        .flash-info {
+            background-color: #e3f2fd;
+            color: #1565c0;
         }
     </style>
 </head>
+
 <body>
 
     <div class="card">
         <!-- Python 로고 -->
         <div class="logo">🐍</div>
 
-        <!-- 메인 메시지 -->
-        <h1>Hello, World!</h1>
+        {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+        {% for category, message in messages %}
+        <div class="flash-message flash-{{ category }}">
+            {{ message }}
+        </div>
+        {% endfor %}
+        {% endif %}
+        {% endwith %}
 
+        <!-- 메인 메시지 -->
+        {% if session.get('user_id') %}
+        <h1>환영합니다, {{ session.get('user_nm') }}님!</h1>
+        <p>MariaDB 연동 및 실시간 인증이 준비되었습니다.</p>
+        {% else %}
+        <h1>Hello, World!</h1>
         <!-- 설명 텍스트 -->
         <p>Python + Flask 로 만든 첫 번째 웹 페이지입니다.<br>
-           Tomcat 없이 Python 만으로 웹 서버가 동작하고 있어요!</p>
+            Tomcat 없이 Python 만으로 웹 서버가 동작하고 있어요!</p>
+        {% endif %}
 
-        <!-- /about 경로로 이동하는 링크 -->
-        <a href="/about" class="btn">About 페이지 보기 →</a>
+        {% if session.get('user_id') %}
+        <a href="/logout" class="btn" style="background-color: #c62828;">로그아웃</a>
+        {% else %}
+        <a href="/login" class="btn">로그인 하러 가기 →</a>
+        {% endif %}
+
+        <div style="margin-top: 20px;">
+            <a href="/about" style="color: #306998; text-decoration: none; font-size: 0.9rem;">About 페이지 보기 →</a>
+        </div>
     </div>
 
 </body>
+
 </html>

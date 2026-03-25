@@ -9,12 +9,26 @@
 
 # Flask 라이브러리에서 Flask 클래스와 render_template 함수를 가져옵니다.
 # Java의 'import' 구문과 동일한 역할입니다.
-from flask import Flask, render_template
+from flask import Flask, render_template, request, redirect, url_for, session, flash
+import mysql.connector
 
 # Flask 앱 객체를 생성합니다.
 # __name__ 은 현재 파일의 이름을 의미하는 Python 내장 변수입니다.
 # Flask는 이 값을 이용해 프로젝트의 루트 경로를 찾습니다.
 app = Flask(__name__)
+app.secret_key = 'antigravity_secret_key'  # 세션을 위한 시크릿 키
+
+# MariaDB 연결 설정
+db_config = {
+    'host': '192.168.57.81',
+    'port': 3301,
+    'user': 'test1',
+    'password': '1234',
+    'database': 'test'
+}
+
+def get_db_connection():
+    return mysql.connector.connect(**db_config)
 
 
 # @app.route("/") 는 '데코레이터(decorator)' 라고 부릅니다.
@@ -40,6 +54,46 @@ def about():
     /about 경로로 접속했을 때 실행되는 함수입니다.
     """
     return render_template("about.html")
+
+
+@app.route("/login", methods=["GET", "POST"])
+def login():
+    if request.method == "POST":
+        user_id = request.form.get("user_id")
+        user_pw = request.form.get("user_pw")
+
+        conn = None
+        try:
+            conn = get_db_connection()
+            cursor = conn.cursor(dictionary=True)
+            
+            # PASSWORD() 함수를 사용하여 비밀번호 검증
+            # tb_users 테이블에서 id와 password(PASSWORD() 함수 적용)가 일치하는 사용자 검색
+            sql = "SELECT user_id, user_nm FROM tb_users WHERE user_id = %s AND user_pw = PASSWORD(%s)"
+            cursor.execute(sql, (user_id, user_pw))
+            user = cursor.fetchone()
+
+            if user:
+                session["user_id"] = user["user_id"]
+                session["user_nm"] = user["user_nm"]
+                flash(f"{user['user_nm']}님, 환영합니다!", "success")
+                return redirect(url_for("hello_world"))
+            else:
+                flash("아이디 또는 비밀번호가 올바르지 않습니다.", "error")
+        except mysql.connector.Error as err:
+            flash(f"데이터베이스 오류: {err}", "error")
+        finally:
+            if conn:
+                conn.close()
+
+    return render_template("login.html")
+
+
+@app.route("/logout")
+def logout():
+    session.clear()
+    flash("로그아웃 되었습니다.", "info")
+    return redirect(url_for("hello_world"))
 
 
 # 이 파일을 직접 실행했을 때만 서버를 시작합니다.
