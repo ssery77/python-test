@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About - Python Flask</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f4f8;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+        }
+
+        .card {
+            background-color: white;
+            padding: 50px 70px;
+            border-radius: 16px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            max-width: 600px;
+            width: 100%;
+        }
+
+        h1 {
+            color: #306998;
+            margin-top: 0;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+
+        th {
+            background-color: #306998;
+            color: white;
+            padding: 10px 14px;
+            text-align: left;
+        }
+
+        td {
+            padding: 10px 14px;
+            border-bottom: 1px solid #eee;
+            color: #444;
+        }
+
+        tr:last-child td {
+            border-bottom: none;
+        }
+
+        a.btn {
+            display: inline-block;
+            background-color: #FFD43B;
+            color: #306998;
+            text-decoration: none;
+            padding: 12px 28px;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: bold;
+        }
+
+        a.btn:hover {
+            background-color: #306998;
+            color: white;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="card">
+        <h1>🐍 Test This App</h1>
+
+        <!-- Tomcat+JSP 경험자를 위한 비교 표 -->
+        <table>
+            <tr>
+                <th>Tomcat + JSP</th>
+                <th>Python + Flask</th>
+            </tr>
+            <tr>
+                <td>Tomcat (서버)</td>
+                <td>Flask 내장 서버</td>
+            </tr>
+            <tr>
+                <td>web.xml (URL 매핑)</td>
+                <td>@app.route() 데코레이터</td>
+            </tr>
+            <tr>
+                <td>.jsp 파일</td>
+                <td>templates/*.html 파일</td>
+            </tr>
+            <tr>
+                <td>Servlet 클래스</td>
+                <td>일반 Python 함수</td>
+            </tr>
+            <tr>
+                <td>8080 포트</td>
+                <td>5000 포트 (기본값)</td>
+            </tr>
+        </table>
+
+        <a href="/" class="btn">← 홈으로 돌아가기</a>
+    </div>
+</body>
+
+</html>
