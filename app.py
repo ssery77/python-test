@@ -1,6 +1,10 @@
 # ============================================================
 # app.py - Python Flask 웹 애플리케이션 (Hello World)
-#
+# python app.py 명령어로 실행할 수 있습니다.
+# .venv/bin/activate 명령어로 가상환경을 활성화한 후 실행하세요.
+# p& e:\workspace\antigravity\python-test\.venv\Scripts\Activate.ps1
+# pip install mysql-connector-python
+
 # [비교] Tomcat + JSP 경험자를 위한 설명:
 #   - Tomcat  -> Flask (내장 서버 포함)
 #   - web.xml -> 이 파일 안의 라우팅 설정 (@app.route)
